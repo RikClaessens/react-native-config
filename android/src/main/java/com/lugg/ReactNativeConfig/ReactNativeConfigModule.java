@@ -28,15 +28,7 @@ public class ReactNativeConfigModule extends ReactContextBaseJavaModule {
     final Map<String, Object> constants = new HashMap<>();
 
     try {
-      Context context = getReactApplicationContext();
-      int resId = context.getResources().getIdentifier("build_config_package", "string", context.getPackageName());
-      String className;
-      try {
-        className = context.getString(resId);
-      } catch (Resources.NotFoundException e) {
-        className = getReactApplicationContext().getApplicationContext().getPackageName();
-      }
-      Class clazz = Class.forName(className + ".BuildConfig");
+      Class clazz = Class.forName("com.exact.connect.BuildConfig");
       Field[] fields = clazz.getDeclaredFields();
       for(Field f: fields) {
         try {
